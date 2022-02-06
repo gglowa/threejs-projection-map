@@ -41,8 +41,8 @@ const ProjectionEnvironment = (controls, modelList, modelPrams, projectorParams,
   
   //GUI END
   // -----------------------------------------------------------------
+
   
-  const enviroModels = [];
   const projEventList = [];
   let projectorMesh;
   let projEventListLength = 0;

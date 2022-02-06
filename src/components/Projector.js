@@ -62,7 +62,7 @@ export class Projector {
   
   constructor(projectorParams, projectorMesh) {
     
-    this.projectorCamera = new THREE.PerspectiveCamera(25, 1, 0.1, 10);
+    this.projectorCamera = new THREE.PerspectiveCamera(25, 1, 0.1, 15);
     this.projectorCamera.position.set(0, 0, -10);
     
     this.projectorCone = new THREE.CameraHelper(this.projectorCamera)
