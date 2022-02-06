@@ -1,0 +1,36 @@
+{
+  "name": "babel_webpack_starter",
+  "version": "1.0.0",
+  "description": "Starter pack for compiling ES6+ apps to ES5",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production --progress",
+    "start": "webpack-dev-server --output-public-path=/lib/  --mode development --progress --open --hot"
+  },
+  "author": "gg",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-stage-0": "^7.0.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.4.1",
+    "webpack-log": "^2.0.0"
+  },
+  "dependencies": {
+    "dat.gui": "^0.7.7",
+    "glsl-triplanar-mapping": "^1.0.1",
+    "stats.js": "^0.17.0",
+    "three": "^0.133.1",
+    "three-fbx-loader": "^1.0.3",
+    "three-fbxloader-offical": "^1.0.0",
+    "three-orbitcontrols": "^2.102.1"
+  }
+}
