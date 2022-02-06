@@ -148,7 +148,7 @@ const projectorParams = {
   
 }
 
-const initProjectionEnvironment = (modelList) => {
+const initProjectionEnvironment = (modelList, modelPrams) => {
   
   // load texture / textures
   textureLoader.load('../lib/projection-textures/projection-texture-512.png', (texture) => {
@@ -156,7 +156,7 @@ const initProjectionEnvironment = (modelList) => {
     // currently one only
     projectorParams.projectionTexture.push(texture);
     
-    ProjectionEnvironment(controls, modelList, projectorParams, addToEventList);
+    ProjectionEnvironment(controls, modelList, modelPrams, projectorParams, addToEventList);
     
     // init event
     update();
@@ -167,9 +167,10 @@ const initProjectionEnvironment = (modelList) => {
 
 const initModels = (gltf) => {
   
-  ModelsGLTF(gltf, function (modelList) {
+  ModelsGLTF(gltf, scene, function (modelList) {
+
     
-    initProjectionEnvironment(modelList);
+    initProjectionEnvironment(modelList[0], modelList[1]);
     
   });
 }

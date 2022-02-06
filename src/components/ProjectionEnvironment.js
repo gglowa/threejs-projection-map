@@ -2,15 +2,11 @@ import * as THREE from "three";
 import {GUI} from 'dat.gui'
 import {Projector} from './Projector';
 
-const ProjectionEnvironment = (controls, modelList, projectorParams, addToEventList) => {
-  
-  const enviroModels = [];
-  const projEventList = [];
-  let projectorMesh;
-  let projEventListLength = 0;
+const ProjectionEnvironment = (controls, modelList, modelPrams, projectorParams, addToEventList) => {
   
   // -----------------------------------------------------------------
-  //GUI
+  // GUI
+  
   const params = {
     projectorX: 0.0,
     projectorY: 0.0,
@@ -42,8 +38,14 @@ const ProjectionEnvironment = (controls, modelList, projectorParams, addToEventL
   guiContainer.onmouseout = function () {
     controls.enabled = true;
   };
+  
   //GUI END
   // -----------------------------------------------------------------
+  
+  const enviroModels = [];
+  const projEventList = [];
+  let projectorMesh;
+  let projEventListLength = 0;
   
   const initNewProjector = (projectorMesh) => {
     return new Projector(projectorParams, projectorMesh);
@@ -51,44 +53,26 @@ const ProjectionEnvironment = (controls, modelList, projectorParams, addToEventL
   
   const initScene = () => {
     
-    // get required models from list
-    modelList.forEach((model) => {
-      
-      const chkModel = model.name.split('_')
-      
-      if (chkModel[1] === 'enviro') {
-        enviroModels.push(model)
-        
-        model.castShadow = true;
-        model.receiveShadow = true;
-        
-        scene.add(model);
-      }
-      
-      if (chkModel[0] === 'projector') {
-        
-        projectorMesh = model;
-        projectorMesh.material = projectorParams.projectorModelMaterial
-      }
-      
-    });
+    // proj mesh
+    projectorMesh = modelPrams.projectorMesh;
+    projectorMesh.material = projectorParams.projectorModelMaterial;
     
     // ------------------------------------------------------
     // create new projector
     // to-do - work / research - needed to produce multiple units here
     const projectorUnit = initNewProjector(projectorMesh);
+    
     // tex enviro - for only one unit
-    enviroModels.forEach((model) => {
+    modelPrams.enviroModels.forEach((model) => {
+      scene.add(model);
       model.material = projectorUnit.shaderMaterial
     });
     
     addToProjEventList(projectorUnit);
     
-    console.log(projectorUnit)
-    
   }
   
-  // add proj to update list
+  // add proj / projectors to update list
   const addToProjEventList = (event) => {
     projEventList.push(event);
     projEventListLength = projEventList.length;
